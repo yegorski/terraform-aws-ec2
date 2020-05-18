@@ -2,6 +2,8 @@
 
 Terraform module to create an AWS EC2 instance.
 
+> You can set up VPC and subnets with [terraform-aws-account-scaffolding][].
+
 ## Usage
 
 Variables in all caps need to be replaced, as well as other as desired.
@@ -28,3 +30,5 @@ module "ec2" {
   }
 }
 ```
+
+[terraform-aws-account-scaffolding]: https://github.com/yegorski/terraform-aws-account-scaffolding

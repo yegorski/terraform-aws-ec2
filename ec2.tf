@@ -6,7 +6,7 @@ resource "aws_instance" "server" {
   key_name                             = "${var.ssh_key_name}"
   user_data                            = "${base64encode(data.template_file.userdata.rendered)}"
   subnet_id                            = "${var.subnet_id}"
-  security_groups                      = ["${var.security_group_id == "" ? aws_security_group.ec2.id : var.security_group_id}"]
+  security_groups                      = ["${var.security_group_id}"]
 
   root_block_device {
     volume_size = "${var.volume_size}"
@@ -14,6 +14,12 @@ resource "aws_instance" "server" {
   }
 
   associate_public_ip_address = "${var.associate_public_ip_address}"
+
+  lifecycle {
+    ignore_changes = [
+      "security_groups",
+    ]
+  }
 
   tags = "${merge(
     map("Name", "${var.name}"),

@@ -41,7 +41,6 @@ variable "region" {
 variable "security_group_id" {
   type        = "string"
   description = "ID of security group attached to the EC2 instance."
-  default     = ""
 }
 
 variable "ssh_key_name" {
